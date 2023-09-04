@@ -6,13 +6,13 @@ const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
 const { name } = require("ejs");
 const app = express();
-
+require('dotenv').config()
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
-mongoose.connect("mongodb+srv://admin-batu:test12345@cluster0.igkxznw.mongodb.net/todoListDB", {
+const mongoPassword = process.env.PASSWORD
+mongoose.connect(`mongodb+srv://admin-batu:${mongoPassword}@cluster0.igkxznw.mongodb.net/todoListDB`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000 // Sunucu seçimi için zaman aşımı süresini artırın
